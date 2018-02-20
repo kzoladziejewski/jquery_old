@@ -1,0 +1,96 @@
+<html>
+    <head>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script> 
+        
+    <style>
+    body {
+        background:rgb(233, 233, 215)}
+    .tabela {margin:auto;
+        width:800px;
+      }
+    #pojemniki>div {        /*to są te divy które tworzą ramkę */
+        
+        width:240px;
+        height:240px;
+        float:left;
+        border:1.5px solid rgb(15, 39, 121);
+       }
+
+    #kawalki > .kawalek {position: absolute;}
+    </style>
+    </head>
+
+
+    <body>
+    <img src="kott.jpg" style="opacity:0.3;position:absolute; left:24%;top:1%"></img>
+
+    <div id="main">
+        
+        <div id="pojemniki" class="tabela">
+                
+            <div></div>         
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+
+        </div>
+
+        <div id="kawalki"></div>
+
+    </div>
+    </body>
+
+
+    <script>
+    
+    funkcja(); //uruchamia funkcję
+
+    $(document).ready(function () {     //kiedy dokument gotowy
+        $( ".kawalek" ).draggable();	//każdy kawałek można przeciągnąć
+        $('#pojemniki>div').droppable({ //i upuścić w divie
+            accept: ".kawalek",         //umieszcza w elemencie klasy .kawalek
+            revert: 'invalid',
+            
+            drop: function (event, ui) {      
+                $(ui.draggable).detach().css({      //zmienia się css
+                    top: 0,
+                    left: 0,
+                    height: 240,
+                    width: 240
+                }).appendTo(this);            
+            }
+        });
+    });
+    
+    function funkcja()
+    {
+        var obrazek = "kott.jpg"
+        var szerokosc = 240;		
+        var wysokosc = 240;   
+        var pozycjax = 0	
+        var pozycjay = 0
+
+        for(var i=0;i<6;i++)        //dla wszystkich 6 elementów
+        {
+                
+            var y = Math.floor((Math.random() * 500));      //te dwie linijki odpowiadają za losowe
+            var x = Math.floor((Math.random() * 280));      //rozmieszczenie puzzli na ekranie w konkretnych miejscach
+                
+            $("#kawalki").append(                                                                                           //do diva o id kawalki dodaje się nowego diva
+                "<div class='kawalek'  style='background-image: url("+obrazek+");background-position: -"+pozycjax+          //klasy kawalek o określonej pozycji
+                "px -"+pozycjay+"px;width:"+szerokosc+"px;height:"+wysokosc+"px;left:"+x+"px; top:"+y+"px '></div>")
+            pozycjax+=szerokosc
+            if(pozycjax>(800-szerokosc))
+            {
+                pozycjax=0;
+                pozycjay+=wysokosc;
+            } 
+        }
+    }
+    
+    </script>
+    </html>

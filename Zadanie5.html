@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<svg width="1000" height="1000">
+
+<circle id="1" cx=200 cy=200 r=120 style="fill:blue; stroke:rgb(65, 125, 236); stroke-width:22; fill-opacity:0"></circle>
+<circle id="2" cx=337 cy=335 r=120 style="fill: rgb(247, 210, 1); stroke:rgb(255, 217, 0); stroke-width:22; fill-opacity:0"></circle>
+<circle id="3" cx=474 cy=200 r=120 style="fill: black; stroke:black; stroke-width:22; fill-opacity:0"></circle>
+<circle id="4" cx=610 cy=335 r=120 style="fill: green; stroke:green; stroke-width:22; fill-opacity:0"></circle>
+<circle id="5" cx=750 cy=200 r=120 style="fill:red; stroke:red; stroke-width:22; fill-opacity:0"></circle>
+
+</svg>
+
+
+</body>
+
+<script>
+$( "#1" ).click(function() {
+  $("#1").animate({
+    opacity: 0.25}, 2000, function() {
+  });
+});
+
+$( "#2" ).click(function() {
+  $("#2").animate({
+    r: "80"}, 2000, function() {
+  });
+});
+
+$( "#3" ).click(function() {
+  $("#3").animate({
+    cx: "510"}, 2000, function() {
+  });
+});
+
+$( "#4" ).click(function() {
+  $("#4").css({"stroke-width": "10px", transition: "3.0s"})});
+
+$( "#5" ).click(function() {
+  $("#5").css({"stroke": "blue", transition: "3.0s"})});
+
+</script>
+
+</html>
